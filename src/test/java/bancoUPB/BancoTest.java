@@ -6,29 +6,40 @@ import banco.BancoUPB;
 import banco.SegipService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mockito;
 public class BancoTest {
     AfpService afpService = Mockito.mock(AfpService.class);
     SegipService segipService = Mockito.mock(SegipService.class);
     AsfiService asfiService = Mockito.mock(AsfiService.class);
 
-    @Test
-    public void verifyFact() {
+    @ParameterizedTest
+    @CsvSource({
+            "888999, true, true, 1000, se le puede realizar el prestamo: 3000",
+            "888999, true, false, 1000, usted no esta habilitado para prestamos",
+            "888999, false, true, 1000, debe revisar su carnet de identidad"
+    })
+    public void verifyFact(int ci, boolean isRealPerson, boolean isAbleToGetCredit, int amount, String expectedMessage) {
 
-        Mockito.when(segipService.isRealPerson(888999)).thenReturn(true);
-        Mockito.when(asfiService.isAbleToGetCredit(888999)).thenReturn(true);
-        Mockito.when(afpService.getAmount(888999)).thenReturn(1000);
+        Mockito.when(segipService.isRealPerson(ci)).thenReturn(isRealPerson);
+        Mockito.when(asfiService.isAbleToGetCredit(ci)).thenReturn(isAbleToGetCredit);
+        Mockito.when(afpService.getAmount(ci)).thenReturn(amount);
 
         BancoUPB bancoUPB = new BancoUPB();
         bancoUPB.setAsfiService(asfiService);
         bancoUPB.setAfpService(afpService);
         bancoUPB.setSegipService(segipService);
-        Assertions.assertEquals("se le puede realizar el prestamo: 3000",
-                bancoUPB.getAmountMoney(888999, 3000),
+        Assertions.assertEquals(expectedMessage,
+                bancoUPB.getAmountMoney(ci, amount*3),
                 "ERROR el prestamo es incorrecto");
 
-        Mockito.verify(segipService).isRealPerson(888999);
-        Mockito.verify(asfiService).isAbleToGetCredit(888999);
-        Mockito.verify(afpService).getAmount(888999);
+        Mockito.verify(segipService).isRealPerson(ci);
+        if (isRealPerson){
+            Mockito.verify(asfiService).isAbleToGetCredit(ci);
+        }
+        if (isRealPerson && isAbleToGetCredit) {
+            Mockito.verify(afpService).getAmount(ci);
+        }
     }
 }
