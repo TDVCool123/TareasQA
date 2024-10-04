@@ -37,14 +37,12 @@ public class TestReservas {
 
     @Test
     public void checkThereIsNoReservations() {
-        // Datos de entrada
         String destino = "La Paz";
         int cantidad = 2;
         int dia = 29;
         int mes = 5;
         int gestion = 2023;
 
-        // Mockeando los métodos
         Mockito.when(pasajesService.existenPasajes(destino, cantidad)).thenReturn(false);
 
         ReservasService reservasService = new ReservasService();
@@ -56,7 +54,6 @@ public class TestReservas {
 
         Assertions.assertEquals(expectedMessage, actualMessage, "ERROR: Mensaje incorrecto cuando no existen suficientes pasajes.");
 
-        // Verificar que se llamó el método correcto
         Mockito.verify(pasajesService).existenPasajes(destino, cantidad);
     }
 }
