@@ -13,11 +13,29 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+
     //para parametros
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.11.1'
+
     //mockito(mocks)
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.14.1'
     testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '5.14.1'
+
+    // restAssured
+    // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.5.0'
+    // https://mvnrepository.com/artifact/io.rest-assured/rest-assured-common
+    implementation group: 'io.rest-assured', name: 'rest-assured-common', version: '5.5.0'
+    // https://mvnrepository.com/artifact/io.rest-assured/json-path
+    testImplementation group: 'io.rest-assured', name: 'json-path', version: '5.5.0'
+    // https://mvnrepository.com/artifact/io.rest-assured/json-schema-validator
+    implementation group: 'io.rest-assured', name: 'json-schema-validator', version: '5.5.0'
+    // https://mvnrepository.com/artifact/io.rest-assured/rest-assured-all
+    testImplementation group: 'io.rest-assured', name: 'rest-assured-all', version: '5.5.0'
+
+    //JSON
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation group: 'org.json', name: 'json', version: '20240303'
 }
 
 test {
