@@ -8,19 +8,36 @@ import org.junit.jupiter.api.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class ItemTest {
+public class ItemTestToken {
     @Test
     @DisplayName("Verify Create Read Update Delete Project - Todo.ly")
     public void verifyCRUDProject(){
+
+        // read
+        Response tokenResponse = given()
+                .auth()
+                .preemptive()
+                .basic("api2024@2024.com","12345")
+                .log().all()
+                .when()
+                .get("https://todo.ly/api/authentication/token.json");
+
+        tokenResponse.then()
+                .statusCode(200)
+                .log().all();
+
+        String token = tokenResponse.then().extract().path("TokenString");
+        System.out.println(token);
+
+        // CRUD
         JSONObject body = new JSONObject();
-        body.put("Content","Hola");
+        body.put("Content","Luis");
         body.put("ProjectId",4357952);
 
         // create
         Response response = given()
-                .auth()
-                .preemptive()
-                .basic("api2024@2024.com","12345")
+                .header("Content-Type", "application/json")
+                .header("Token", token)
                 .body(body.toString())
                 .log().all()
                 .when()
@@ -30,13 +47,12 @@ public class ItemTest {
                 .body("Content",equalTo(body.get("Content")))
                 .body("ProjectId",equalTo(body.get("ProjectId")))
                 .log().all();
-
+        System.out.println(response);
         int id = response.then().extract().path("Id");
         // read
         response = given()
-                .auth()
-                .preemptive()
-                .basic("api2024@2024.com","12345")
+                .header("Content-Type", "application/json")
+                .header("Token", token)
                 .log().all()
                 .when()
                 .get("https://todo.ly/api/items/"+id+".json");
@@ -52,9 +68,8 @@ public class ItemTest {
         body.put("Priority",2);
 
         response = given()
-                .auth()
-                .preemptive()
-                .basic("api2024@2024.com","12345")
+                .header("Content-Type", "application/json")
+                .header("Token", token)
                 .body(body.toString())
                 .log().all()
                 .when()
@@ -70,9 +85,8 @@ public class ItemTest {
         // delete
 
         response = given()
-                .auth()
-                .preemptive()
-                .basic("api2024@2024.com","12345")
+                .header("Content-Type", "application/json")
+                .header("Token", token)
                 .log().all()
                 .when()
                 .delete("https://todo.ly/api/items/"+id+".json");
