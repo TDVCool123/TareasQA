@@ -18,6 +18,11 @@ dependencies {
     //mockito(mocks)
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.14.1'
     testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '5.14.1'
+
+    //Selenium
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.25.0'
+
 }
 
 test {
