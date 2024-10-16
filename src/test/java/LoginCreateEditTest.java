@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class LoginTest {
+public class LoginCreateEditTest {
     WebDriver chrome;
 
     @BeforeEach
@@ -24,7 +24,7 @@ public class LoginTest {
     }
 
     @Test
-    @DisplayName("Verify login test is succesfull")
+    @DisplayName("Verify login/creare/edit test is succesfull")
     public void verifyLoginTest() throws InterruptedException {
         chrome.findElement(By.xpath("//img[@src=\"/Images/design/pagelogin.png\"]")).click();
         chrome.findElement(By.id("ctl00_MainContent_LoginControl1_TextBoxEmail")).sendKeys("selenium123@123.com");
@@ -54,9 +54,6 @@ public class LoginTest {
                 "ERROR! nose pudo iniciar sesion");
     }
 
-    /*@Test
-    @DisplayName("Verify create project is succesfull")
-    public void verifyCreateProject() throws InterruptedException {
 
-    }*/
+
 }
