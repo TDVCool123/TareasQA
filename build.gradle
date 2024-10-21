@@ -13,11 +13,12 @@ repositories {
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.9.1')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-    //para parametros
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.11.1'
-    //mockito(mocks)
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.14.1'
-    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '5.14.1'
+
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.25.0'
+// https://mvnrepository.com/artifact/com.jsexecutor/jsexecutor-core
+    implementation group: 'com.jsexecutor', name: 'jsexecutor-core', version: '1.0.5'
+
 }
 
 test {
