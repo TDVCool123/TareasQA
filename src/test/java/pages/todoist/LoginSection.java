@@ -5,6 +5,6 @@ import controls.TextBox;
 import org.openqa.selenium.By;
 
 public class LoginSection {
-    public Button register = new Button(By.id("//a[text()='Regístrate']"));
+    public Button register = new Button(By.xpath("//a[text()='Regístrate']"));
 
 }
