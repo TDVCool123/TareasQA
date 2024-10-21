@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class LoginDdeleteTest {
     WebDriver chrome;
@@ -39,9 +40,11 @@ public class LoginDdeleteTest {
         chrome.findElement(By.xpath("//td[@class=\"ProjItemContent\" and text()=\"Luis Project\"]//../td[@class=\"ItemIndicator\"]/div[@class=\"ProjItemMenu\"]/img[@src=\"/Images/dropdown.png\"]")).click();
         chrome.findElement(By.xpath("//a[@href=\"#delete\"]")).click();
 
+        Thread.sleep(5000);
         Alert alert = chrome.switchTo().alert();
         String text = alert.getText();
         alert.accept();
+        Thread.sleep(5000);
 
         // verification edit
         int number = chrome.findElements(By.xpath("//td[@class=\"ProjItemContent\" and text()='"+proyect_to_delete+"'] ")).size();

@@ -45,7 +45,7 @@ public class LoginCreateEditTest {
         chrome.findElement(By.xpath("//td[@class=\"ProjItemContent\" and text()=\"Project\"]//../td[@class=\"ItemIndicator\"]/div[@class=\"ProjItemMenu\"]/img[@src=\"/Images/dropdown.png\"]")).click();
         chrome.findElement(By.xpath("//a[@href=\"#edit\"]")).click();
         chrome.findElement(By.id("ItemEditTextbox")).clear();
-        chrome.findElement(By.id("ItemEditTextbox")).sendKeys("Project edit");
+        chrome.findElement(By.id("ItemEditTextbox")).sendKeys("Luis Project");
         chrome.findElement(By.id("ItemEditSubmit")).click();
 
 
