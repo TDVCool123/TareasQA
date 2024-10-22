@@ -33,4 +33,9 @@ public class Control {
         this.findControl();
         return control.getText();
     }
+
+    public String getPropertyValue(String property){
+        this.findControl();
+        return control.getAttribute(property);
+    }
 }

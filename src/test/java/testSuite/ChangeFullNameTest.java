@@ -19,14 +19,14 @@ public class ChangeFullNameTest extends BaseTestTodoLy{
 
     @Test
     public void createProject() throws InterruptedException {
-        String name = "hola";
+        String name = "adios";
         mainPage.loginButton.click();
         loginSection.login("luisparicollo333@gmail.com","123456");
         navBarSection.settings.click();
         settingsSection.editFullName(name);
         Thread.sleep(7000);
         navBarSection.settings.click();
-        String newName=settingsSection.fullNameInput.getText();
+        String newName=settingsSection.fullNameInput.getPropertyValue("value");
         Assertions.assertEquals(name,newName,
                 "ERROR the name was not changed");
 
