@@ -15,9 +15,13 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     //para parametros
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.11.1'
-    //mockito(mocks)
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.14.1'
-    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '5.14.1'
+
+    //appium
+    implementation group: 'io.appium', name: 'java-client', version: '9.3.0'
+
+    //selenium
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.25.0'
+
 }
 
 test {
