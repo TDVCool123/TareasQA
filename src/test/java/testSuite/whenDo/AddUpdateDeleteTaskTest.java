@@ -24,14 +24,13 @@ public class AddUpdateDeleteTaskTest extends WhendoTestBase {
         //edit
         String newtittle = "Skibidi";
         String newNote = "Skibidi sigma pomni digital fortnite chamba";
-        mainScreen.boxLabel.click();
+        mainScreen.entryTask(tittle).click();
         editDeleteTask.editTask(newtittle, newNote);
-        mainScreen.boxLabel.click();
+        mainScreen.entryTask(newtittle).click();
         editDeleteTask.deleteTask();
 
         //check
         String expectedResult = "No se agregaron tareas";
-
         Assertions.assertEquals(expectedResult,mainScreen.emptyTasksLabel.getText(),
                 "ERROR no se hizo el flujo bien");
 

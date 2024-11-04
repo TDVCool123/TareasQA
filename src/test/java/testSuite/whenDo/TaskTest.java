@@ -16,7 +16,7 @@ public class TaskTest extends WhendoTestBase {
         mainScreen.addButton.click();
         createTask.createTask(tittle,notes);
 
-        Assertions.assertEquals(tittle,mainScreen.checkTittle(tittle),
+        Assertions.assertEquals(tittle,mainScreen.checkTaskTittle(tittle),
                 "ERROR la suma es incorrecta");
 
     }

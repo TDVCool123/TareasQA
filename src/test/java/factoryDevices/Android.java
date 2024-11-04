@@ -28,7 +28,7 @@ public class Android implements IDevice{
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         return driver;
     }
 }
