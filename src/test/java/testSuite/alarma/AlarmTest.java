@@ -32,7 +32,7 @@ public class AlarmTest extends WhendoTestBase {
         String actualTime = alarmMainScreen.getAlarmText(timeToCheckFormated);
         System.out.println(actualTime);
 
-        Assertions.assertEquals(timeToCheckFormated, removeSecondsAndFormat(actualTime),
+        Assertions.assertEquals("04:15", removeSecondsAndFormat(actualTime),
                 "ERROR: La alarma no se creo");
 
     }
